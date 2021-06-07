@@ -1,0 +1,171 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Chiswell%
+\ \BBA {} {Hodges Wilfrid}%
+}{%
+Chiswell%
+\ \BBA {} {Hodges Wilfrid}%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+Chiswell2002}
+\APACinsertmetastar {%
+Chiswell2002}%
+\begin{APACrefauthors}%
+Chiswell, I.%
+\BCBT {}\ \BBA {} {Hodges Wilfrid}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2007}.
+\newblock
+\APACrefbtitle {{Mathematical Logic}} {{Mathematical Logic}}.
+\newblock
+\APACaddressPublisher{Oxford, NY}{Oxford University Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Iemhoff%
+}{%
+Iemhoff%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+sep-intuitionism}
+\APACinsertmetastar {%
+sep-intuitionism}%
+\begin{APACrefauthors}%
+Iemhoff, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Intuitionism in the Philosophy of Mathematics}
+  {Intuitionism in the philosophy of mathematics}.{\BBCQ}
+\newblock
+\BIn{} E\BPBI N.~Zalta\ (\BED), \APACrefbtitle {The Stanford Encyclopedia of
+  Philosophy} {The stanford encyclopedia of philosophy}\ (\PrintOrdinal{Spring
+  2015}\ \BEd).
+\newblock
+\APAChowpublished
+  {\url{http://plato.stanford.edu/archives/spr2015/entries/intuitionism/}}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kleene%
+}{%
+Kleene%
+}{%
+{\protect \APACyear {1971}}%
+}]{%
+Kleene1971}
+\APACinsertmetastar {%
+Kleene1971}%
+\begin{APACrefauthors}%
+Kleene, S\BPBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1971}{}{}.
+\newblock
+\APACrefbtitle {{S.C. Kleene Introduction to Metamathematics}.} {{S.C. Kleene
+  Introduction to Metamathematics}.}
+\newblock
+\APACaddressPublisher{}{Wolters-Noordhoff Publishing}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Leary%
+}{%
+Leary%
+}{%
+{\protect \APACyear {1999}}%
+}]{%
+Leary1999}
+\APACinsertmetastar {%
+Leary1999}%
+\begin{APACrefauthors}%
+Leary, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1999}.
+\newblock
+\APACrefbtitle {{A friendly introduction to mathematical logic}} {{A friendly
+  introduction to mathematical logic}}.
+\newblock
+\APACaddressPublisher{}{Prentice Hall}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ligatti%
+}{%
+Ligatti%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+ligatti}
+\APACinsertmetastar {%
+ligatti}%
+\begin{APACrefauthors}%
+Ligatti, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\APACrefbtitle {Induction on Failing Derivations} {Induction on failing
+  derivations}\ \APACbVolEdTR{}{\BTR{}}.
+\newblock
+\APACaddressInstitution{}{Technical report, University of South Florida}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pierce%
+}{%
+Pierce%
+}{%
+{\protect \APACyear {2002}}%
+}]{%
+Pierce2002}
+\APACinsertmetastar {%
+Pierce2002}%
+\begin{APACrefauthors}%
+Pierce, B\BPBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2002}.
+\newblock
+\APACrefbtitle {{Types and Programming Languages}} {{Types and Programming
+  Languages}}.
+\newblock
+\APACaddressPublisher{}{The MIT Press}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sangiorgi%
+}{%
+Sangiorgi%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+Sangiorgi2011}
+\APACinsertmetastar {%
+Sangiorgi2011}%
+\begin{APACrefauthors}%
+Sangiorgi, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2011}.
+\newblock
+\APACrefbtitle {{Introduction to Bisimulation and Coinduction}} {{Introduction
+  to Bisimulation and Coinduction}}.
+\newblock
+\APACaddressPublisher{}{Cambridge University Press}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

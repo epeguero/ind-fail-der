@@ -1,0 +1,83 @@
+\section{Formalizing Recursive Definitions}
+\label{sec-fol}
+The persuasiveness of a logical argument must not rely on the eloquence and intuition of the arguer; rather, they must carry \textit{objective necessity}. That is, proofs must be verifiable from the rules of argumentation, or \textbf{inference rules}, which specify how sentences can be deduced from previously proven sentences. Such a discussion of mathematics, itself being mathematical, enters the realm of \textit{metamathematics}, which examines the mechanical codification, or \textit{formalization}, of mathematics through purely effective (i.e., algorithmic, constructive, finitary) means \cite{Kleene1971}.
+
+In this formalized view, proofs are naturally recursive objects: each inference rule specifies how a proof for a sentence may be built from smaller proofs. Each inference rule is composed of zero or more \textit{premises} and one \textit{conclusion}, and these compose a \textbf{deductive system}. A sentence is \textbf{derivable} if it is the conclusion of an inference rule for which all of the premises are also derivable. The set of all finitely derivable sentences forms an inductive set called a \textbf{theory}, and each sentence in the theory has a corresponding proof, or \textit{derivation} \cite{Chiswell2002}.
+
+Deductive systems separate the symbolic structure, or \textit{syntax}, of a sentence from its underlying meaning, or \textit{semantics}. Hence, such systems formalize the process of proof verification: the derivability of sentences can be shown independently of any intuition or understanding of the underlying subject matter. Indeed, such proofs carry objective necessity, since it can be seen that they necessarily follow from successive applications of the inference rules.
+
+\subsubsection{First-order Logic}
+Often, sentences deducible from a deductive system are expressed in \textbf{first-order logic}, a formal language characterized by a syntax that resembles a simplified, unambiguous natural language. Each part of speech of first-order logic is recursively defined, making use of the following types of symbols \cite{Leary1999}:
+
+\begin{itemize}
+\item Logical Symbols
+\begin{itemize}
+\item Logical Connectives: $\wedge, \vee, \lnot, \to, \forall, \exists$
+\item Equality: the binary relation $=$
+\item Variables: a denumerable set of symbols $x_0, x_1, ..., x_n, ...$
+\end{itemize}
+
+\item Non-logical Symbols
+\begin{itemize}
+\item Constants: a denumerable set of symbols $c_0, c_1, ..., c_n, ...$
+\item Function Symbols: zero or more symbols $f^{n_1}_1, f^{n_2}_2, ..., f^{n_k}_k, ...$. The superscript denotes the number of arguments the function takes, i.e. its \textit{arity}, whereas the subscript identifies the function symbol.
+\item Predicate Symbols: zero or more symbols $P^{n_1}_1, P^{n_2}_2, ..., P^{n_k}_k, ...$. The symbolic naming scheme is the same as that for functions.
+\end{itemize}
+
+\end{itemize}
+
+The distinction between logical and non-logical symbols separates those symbols that carry a logical interpretation and those associated with some domain-specific interpretation, such as in a specific mathematical domain (e.g., algebra, group theory, number theory, etc.).
+
+The ``nouns", or \textit{terms}, in first-order logic are defined as:
+\begin{itemize}
+\item Each variable and constant is a term.
+\item If $t_1, t_2, ... t_k$ are terms, then $f^{n_k}_k t_1 t_2 ... t_k$ is a term. Thus, functions produce new terms from other terms.
+\end{itemize}
+
+Finally, the ``sentences", or \textit{formula} are defined by combining terms with predicate "verbs" as follows:
+\begin{itemize}
+\item If $t_1, t_2, ... t_k$ are terms, then $P^{n_k}_k t_1 t_2 ... t_k$ is a formula.
+\item If $t_1$ and $t_2$ are terms, then $t_1 = t_2$ is a formula.
+\item If $\theta_1$ and $\theta_2$ are formulas, then $\theta_1 \wedge \theta_2$ is a formula.
+\item If $\theta$ is a formula and $x$ is a variable, then $\exists x \theta$ is a formula.
+\item ...similar criteria for the other logical connectives
+\end{itemize}
+
+Figure \ref{fig-nat-sys} depicts a deductive system for the natural numbers; sentences in the induced \textit{first-order theory} state simply whether a string encodes a natural number. Intuitively, `$Z$' represents $0 \in \mathbb{N}$, `$S$' encodes the function $S(n) = n + 1$, and `Nat$(n)$' encodes the predicate $n \in \mathbb{N}$. From this example, it is evident that deductive systems can be used to define recursive objects. Moreover, Figure \ref{fig-less-than-sys} shows that deductive systems can also be used to define \textit{properties} of recursive objects.
+
+\begin{figure}[h]
+ 	\caption{Deductive System for Natural Numbers}
+ 	\label{fig-nat-sys}
+	\centering
+
+	\vskip 0.2in	
+
+	\AxiomC{}
+	\UnaryInfC{Nat($Z$)}
+	\RightLabel{\scriptsize($Z$)}
+	\DisplayProof 		
+	\hskip 0.3in		
+	\AxiomC{Nat$(n)$}
+	\UnaryInfC{Nat$(S(n))$}
+	\RightLabel{\scriptsize($N$)}
+	\DisplayProof		
+\end{figure}
+
+\begin{figure}[h]
+ 	\caption{Deductive System for the $\le$ relation}
+	\label{fig-less-than-sys}
+	\centering
+
+	\vskip 0.2in	
+
+	\AxiomC{}
+	\UnaryInfC{$Z \le n$}
+	\RightLabel{\scriptsize($Z \le$)}
+	\DisplayProof 		
+	\hskip 0.3in		
+	\AxiomC{$n \le m$}
+	\UnaryInfC{$S(n) \le S(m)$}
+	\RightLabel{\scriptsize($N \le$)}
+	\DisplayProof		
+\end{figure}
+
