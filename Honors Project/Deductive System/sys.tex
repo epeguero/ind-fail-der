@@ -1,0 +1,212 @@
+\documentclass[article]{journal}
+\usepackage{amsmath,amssymb}
+\usepackage{bussproofs}
+\newcommand{\justif}[2]{&{#1}&\text{#2}}
+
+\begin{document}
+
+Let $FV(\sigma)$ denote the free variables in the formula, $\sigma$, and let $\sigma[t/x]$ denote the capture-avoiding substitution of a term $t$ for all free $x$ in $\sigma$.
+
+Intuitively, the proof of a universal formula, $\forall xA$, proceeds by proving that, $A[y/x]$, holds for an \textit{arbitrary} element $y$, given certain assumptions, $\Gamma$. We say that $y$ is arbitrary in the sense that no specific information is assumed of $y$; we formalize this notion by requiring that $\forall \sigma \in \Gamma: (y \not\in FV(\sigma))$, abbreviated as $y \not\in FV(\Gamma)$. In natural deduction style, we write this rule as:
+\begin{prooftree}
+\AxiomC{$y \not\in FV(\Gamma)$}
+\alwaysNoLine
+\AxiomC{[$\Gamma$]}
+\UnaryInfC{$A[y/x]$}
+\alwaysSingleLine
+\RightLabel{\scriptsize(I$\forall$)}
+\BinaryInfC{$\forall xA$}
+\end{prooftree}
+
+In sequent style this is formulated as:
+\begin{prooftree}
+\AxiomC{$y \not\in FV(\Gamma)$}
+\AxiomC{$\Gamma \vdash A(y/x)$}
+\RightLabel{\scriptsize(R$\forall$)}
+\BinaryInfC{$\Gamma \vdash \forall xA$}
+\end{prooftree}
+
+A problem with this standard rule stems from a discrepancy between provability and truth: it is conceivable that the truth of $\forall xA$ in a specific domain follows from separate proofs of $A[a_1/x]$, $A[a_2/x], ..., A[a_n/x], ...$, where each proof depends on \textit{specific} properties of each $a_i$. Since the above rule requires the existence of a \textit{uniform} proof of $A$, that is, a proof that is the same for all instances $a_i$, then we say that the conditions for provability are \textit{stronger} than those for truth in this logic.
+
+Universal quantifiers are consumed by drawing an arbitrary terms, $t$, of the quantified formula:
+\begin{prooftree}
+\AxiomC{$\forall xA$}
+\RightLabel{\scriptsize(E$\forall$)}
+\UnaryInfC{$A(t/x)$}
+\end{prooftree}
+
+In sequent style:
+\begin{prooftree}
+\AxiomC{$A(t/n), \forall xA, \Gamma \vdash C$}
+\RightLabel{\scriptsize(L$\forall$)}
+\UnaryInfC{$\forall xA, \Gamma \vdash C$}
+\end{prooftree}
+
+Dually, the proof of an existential formula, $\exists xA$ proceeds by proving that a property, $A[t/x]$, holds for some term $t$ from assumptions, $\Gamma$. In the style of natural deduction, this is formalized as:
+\begin{prooftree}
+\alwaysNoLine
+\AxiomC{[$\Gamma$]}
+\UnaryInfC{$A[t/x]$}
+\alwaysSingleLine
+\RightLabel{\scriptsize(I$\exists$)}
+\UnaryInfC{$\exists xA$}
+\end{prooftree}
+
+In sequent calculus:
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash A(t/x)$}
+\RightLabel{\scriptsize(R$\exists$)}
+\UnaryInfC{$\Gamma \vdash \exists xA$}
+\end{prooftree}
+
+To derive a consumption rule for existential quantification, we consider how an arbitrary consequence, $C$, of $\exists xA$ may be proven. If we know $\exists xA$, we can assume $A[y/x]$ for some variable $y$. Importantly, we are unable to consume $\exists xA$ if we assume anything else about $y$. Thus, any assumptions, $\Gamma$, must be such that $y \not\in FV(\Gamma)$. Finally, if we conclude $C$, and $y \not\in FV(C)$, we can eliminate the assumption $A[y/x]$. From this, we write the following natural deduction rule:
+\begin{prooftree}
+\AxiomC{$y \not\in FV(\Gamma \cup {C})$}
+\alwaysNoLine
+\AxiomC{$[\Delta]$}
+\UnaryInfC{$\exists xA$}
+\alwaysNoLine
+\AxiomC{[$A[y/x]$],$\Gamma$}
+\UnaryInfC{$C$}
+\alwaysSingleLine
+\RightLabel{\scriptsize(E$\exists$)}
+\TrinaryInfC{$C$}
+\end{prooftree}
+
+In sequent calculus:
+\begin{prooftree}
+\AxiomC{$y \not\in FV(\Gamma \cup {C})$}
+\AxiomC{$A(y/x), \Gamma \vdash C$}
+\RightLabel{\scriptsize(L$\exists$)}
+\BinaryInfC{$\exists xA, \Gamma \vdash C$}
+\end{prooftree}
+
+With these rules, we define the sequent logic \textit{L1} as containing: the constant $0$ (zero), the unary function $S$ (the successor function), and the following axioms and rules:
+
+\begin{alignat*}{1}
+&\textbf{P1}: \Gamma \vdash \forall n (n=0 \vee \exists m: n = S(m)) \\
+&\textbf{P2}: \Gamma \vdash \forall n \forall m (n = S(m) \to m < n) \\
+&\textbf{P3}: \Gamma \vdash \exists nA \supset \exists n(A \wedge \forall m(m < n \supset \lnot A[m/n]))
+\end{alignat*}
+
+\vskip 0.2in
+\AxiomC{}
+\RightLabel{\scriptsize(L$\bot$)}
+\UnaryInfC{$\Gamma, \bot \vdash A$}
+\DisplayProof
+\vskip 0.2in
+
+\AxiomC{$y \not\in FV(\Gamma)$}
+\AxiomC{$\Gamma \vdash A(y/x)$}
+\RightLabel{\scriptsize(R$\forall$)}
+\BinaryInfC{$\Gamma \vdash \forall xA$}
+\DisplayProof \hskip 0.5in
+\AxiomC{$A(t/n), \forall xA, \Gamma \vdash C$}
+\RightLabel{\scriptsize(L$\forall$)}
+\UnaryInfC{$\forall xA, \Gamma \vdash C$}
+\DisplayProof 
+
+\vskip 0.2in
+\AxiomC{$\Gamma \vdash A(t/x)$}
+\RightLabel{\scriptsize(R$\exists$)}
+\UnaryInfC{$\Gamma \vdash \exists xA$}
+\DisplayProof \hskip 0.5in
+\AxiomC{$y \not\in FV(\Gamma \cup {C})$}
+\AxiomC{$A(y/x), \Gamma \vdash C$}
+\RightLabel{\scriptsize(L$\exists$)}
+\BinaryInfC{$\exists xA, \Gamma \vdash C$}
+\DisplayProof
+
+\vskip 0.2in
+\AxiomC{$\Gamma, A \vdash C$}
+\RightLabel{\scriptsize(R$\to$)}
+\UnaryInfC{$\Gamma \vdash A \to C$}
+\DisplayProof \hskip 0.5in
+\AxiomC{$\Gamma \vdash A$}
+\AxiomC{$\Gamma, B \vdash C$}
+\RightLabel{\scriptsize(L$\to$)}
+\BinaryInfC{$A \to B, \Gamma \vdash C$}
+\DisplayProof
+
+\vskip 0.2in
+\AxiomC{$\Gamma \vdash A$}
+\AxiomC{$\Gamma \vdash B$}
+\RightLabel{\scriptsize(R$\wedge$)}
+\BinaryInfC{$\Gamma \vdash A \wedge B$}
+\DisplayProof \hskip 0.5in
+\AxiomC{$\Gamma, A, B \vdash C$}
+\RightLabel{\scriptsize(L$\wedge$)}
+\UnaryInfC{$\Gamma, A \wedge B \vdash C$}
+\DisplayProof
+
+\vskip 0.2in
+\AxiomC{$\Gamma \vdash A$}
+\RightLabel{\scriptsize(R$\vee$)}
+\UnaryInfC{$\Gamma \vdash A \vee B$}
+\DisplayProof \hskip 0.5in
+\AxiomC{$\Gamma, A \vdash C$}
+\AxiomC{$\Gamma, B \vdash C$}
+\RightLabel{\scriptsize(L$\vee$)}
+\BinaryInfC{$\Gamma, A \vee B \vdash C$}
+\DisplayProof
+
+\vskip 0.2in
+\AxiomC{$\Gamma, A(0), \forall n[A(n) \to A(S(n))] \vdash C $}
+\RightLabel{\scriptsize(Induction)}
+\UnaryInfC{$\Gamma, \forall nA \vdash C $}
+\DisplayProof \\ \vskip 0.2in
+
+Also, we define \textit{L2} as identical to \textit{L1} without the Induction rule and along with the rule of Excluded Middle:
+\begin{prooftree}
+\AxiomC{$\Gamma, A \vdash C$}
+\AxiomC{$\Gamma, \lnot A \vdash C$}
+\RightLabel{\scriptsize(EM)}
+\BinaryInfC{$\Gamma \vdash C$}
+\end{prooftree}
+
+The derivability relation, $\vdash$, will be written as $\vdash_1$ or $\vdash_2$ to denote derivability in \textit{L1} and \textit{L2}, respectively. Also, by $\sigma(n)$, we refer to a formula $\sigma$ with 1 free variable that is substituted by n.
+
+Our aim is to prove the following theorems: \\ \hfill \\
+\textsc{Theorem I} \textbf{(Admissibility of Induction in} \textit{L2}): For any formula, $\sigma$, and sequent multiset, $\Gamma$: 
+$$(\Gamma \vdash_2 \sigma(0)) \wedge (\Gamma \vdash_2 \forall n[\sigma(n) \to \sigma(S(n))]) \Rightarrow (\Gamma \vdash_2 \forall n\sigma(n))$$
+
+\textsc{Theorem II} \textbf{(Inadmissibility of Excluded Middle in} \textit{L1}): There exist formulae, $\sigma$ and $\gamma$, and a sequent multiset, $\Gamma$, such that: 
+$$(\Gamma, \sigma \vdash_1 \gamma) \wedge (\Gamma, \lnot\sigma \vdash_1 \gamma) \wedge (\Gamma \not\vdash_1 \gamma)$$
+\hfill \\
+Proof of Theorem 1:\\
+Let $\Delta = \Gamma \vdash_2 \sigma(0), \Gamma \vdash_2 \forall n[\sigma(n) \to \sigma(S(n))], \lnot\forall n\sigma$
+\begin{alignat*}{2}
+&1) \Delta \vdash \exists n[\sigma(n) \wedge \forall m[m < n \to \lnot\lnot\sigma(m)]]		\justif{\quad}{Rule: Infimum}\\
+&2) \Delta' \vdash N=0 \vee \exists m: N = S(m)		\justif{\quad}{PC1}\\
+&3) \Delta', N=0 \vdash \lnot sigma(0)				\justif{\quad}{Rule: = E}\\
+&4) \Delta', N=0 \vdash \bot                			\justif{\quad}{3), Rule: Non-contradiction}\\
+&5) \Delta' \vdash \lnot N=0							\justif{\quad}{4), Rule: Reductio ad absurdum}\\
+&6) \Delta', N=S(M) \vdash M < N						\justif{\quad}{PC2}\\  
+&7) \Delta', N=S(M) \vdash \lnot\lnot\sigma(M) 		\justif{\quad}{6), Rule: $\to$ E}\\
+&8) \Delta', N=S(M) \vdash \sigma(M) 				\justif{\quad}{7), Double Negation}\\
+&9) \Delta', N=S(M) \vdash \sigma(S(M)) 				\justif{\quad}{8), Rule: $\to$ E}\\
+&10) \Delta', N=S(M) \vdash \sigma(N) 				\justif{\quad}{9), Rule: = E}\\
+&11) \Delta', N=S(M) \vdash \bot 					\justif{\quad}{10), Rule: Non-contradiction}\\
+&12) \Delta' \vdash \lnot N=S(M) 					\justif{\quad}{11), Rule: Reductio ad absurdum}\\
+&13) \Delta' \vdash \lnot\exists m: N=S(m) 			\justif{\quad}{12), Rule: $\exists$ I}\\
+&14) \Delta' \vdash \lnot N=0 \wedge \lnot\exists m: N=S(m) 		\justif{\quad}{5), 13), Rule: $\wedge$ I}\\
+&15) \Delta' \vdash \lnot (N=0 \vee \exists m: N=S(m)) 			\justif{\quad}{14), DeMorgan's Theorem}\\
+&16) \Delta' \vdash \bot 							\justif{\quad}{2), 15), Rule: Non-contradiction}\\
+&17) \Delta \vdash \bot 								\justif{\quad}{16), 1), Rule: $\exists$ E}\\
+&18) \Gamma, \sigma(0), \forall n: \sigma(n) \to \sigma(S(n)) \vdash \lnot \exists n: \lnot sigma(n) \justif{\quad}{17), Rule: non-contradiction}\\
+&19) \Gamma, \sigma(0), \forall n: \sigma(n) \to \sigma(S(n)) \vdash \forall n: sigma(n) \justif{\quad}{18), Rule: $\lnot \exists$, Rule: Double Negation}
+\end{alignat*}
+
+\vskip 0.1in
+Sources:
+\begin{enumerate}
+\item Jan von Plato, \textit{Elements of Logical Reasoning}
+\item Katalin Bimbo, \textit{Proof Theory: Sequent Calculi and Formalisms}
+\item http://mathworld.wolfram.com/SequentCalculus.html
+\item Gaisi Takeuti, \textit{Proof Theory} (2nd ed - 1987)
+\end{enumerate}
+
+
+\end{document}
+
+

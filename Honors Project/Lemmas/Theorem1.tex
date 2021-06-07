@@ -1,0 +1,44 @@
+\documentclass[article]{journal}
+\usepackage{amsmath,amssymb}
+\usepackage{bussproofs}
+\usepackage{parskip}
+
+\newcommand{\justif}[2]{&{#1}&\text{#2}}
+%\newcommand{\sub}[2]{\lbrack #1/#2\rbrack}
+
+\begin{document}
+
+\textsc{Theorem I} ($L_{ind} \subset L_{em}$): $\forall \sigma, (\Gamma \vdash_{ind} \sigma) \implies (\Gamma \vdash_{em} \sigma)$ \\
+
+\textsc{Proof:} \\
+Proceding by induction on the derivation of $\sigma$, we observe that for every rule other than induction, Theorem I immediately holds, since these rules are shared by both $L_{ind}$ and $L_{em}$.
+
+In the case of induction, we have: 
+\begin{prooftree}
+\AxiomC{$\Gamma, P(0), \forall n(P(n) \to P(S(n))) \vdash_{ind} C $}
+\RightLabel{\scriptsize(Induction)}
+\UnaryInfC{$\Gamma, \forall n(P(n)) \vdash_{ind} C $}
+\end{prooftree}
+
+By the inductive hypothesis, we deduce: $$\Gamma, P(0), \forall n[P(n) \to P(S(n))] \vdash_{em} C $$
+
+To prove Theorem I, it suffices to show $\Gamma, \forall n(P(n)) \vdash_{em} C $
+
+First, we present a proof in prose:
+
+\begin{enumerate}
+\item Suppose $P(0) \wedge \forall n(P(n) \to P(S(n)))$.
+\item For the purposes of contradiction, further suppose that $\lnot\forall n(P(n))$.
+\item Then, by DeMorgan's Quantifier Negation Lemma, $\exists n(\lnot P(n))$.
+\item By the Infimum property of natural numbers, we then have, $$\exists n(\lnot P(n) \wedge \forall m(m<n \to \lnot\lnot P(m)))$$
+\item Additionally, we conclude from \textbf{1} that $\exists n(P(n))$
+\item An additional application of the Infimum property on \textbf{5} yields $$\exists n(P(n) \wedge \forall m(m<n \to \lnot P(m))$$
+\item By \textbf{4} and \textbf{6}, we let N and M be such that:
+$$\lnot P(M) \wedge \forall m(m<M \to \lnot\lnot P(M))$$
+$$P(N) \wedge \forall m(m<N \to \lnot P(N))$$
+\item By the Trichotomy Axiom, we have that 
+
+\end{enumerate}
+
+
+\end{document}
